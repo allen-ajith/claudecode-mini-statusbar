@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "claudecode-mini-statusbar"
+version = "1.0.0"
+description = "A tiny, monochrome Claude Code status line: context window, usage limits, and prompt-cache expiry."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Allen" }]
+keywords = ["claude", "claude-code", "statusline", "cli"]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/allen-ajith/claudecode-mini-statusbar"
+
+[project.scripts]
+claudecode-mini-statusbar = "claude_statusline.statusline:main"
+
+[tool.setuptools]
+packages = ["claude_statusline"]
