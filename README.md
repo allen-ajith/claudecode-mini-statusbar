@@ -28,10 +28,12 @@ Add to `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 /absolute/path/to/claudecode-mini-statusbar/statusline.py"
+    "command": "PYTHONPATH=/absolute/path/to/claudecode-mini-statusbar python3 -m claude_statusline.statusline"
   }
 }
 ```
+
+Run it as a module (`-m`) with `PYTHONPATH` pointing at the clone — `claude_statusline` uses package-relative imports, so a bare `python3 .../statusline.py` won't work. If your clone path has spaces, quote it: `PYTHONPATH="/path/with spaces/..."`.
 
 Restart Claude Code (or run `/statusline`).
 
@@ -45,13 +47,17 @@ Restart Claude Code (or run `/statusline`).
 | `CLAUDE_STATUSLINE_PLAIN` | Disable bold/dim styling |
 | `CLAUDE_STATUSLINE_NO_CACHE` | Hide the `cache` segment |
 
-Set them with an `env` block in `~/.claude/settings.json` (values must be strings). Only include keys you want to change:
+Set them with an `env` block in `~/.claude/settings.json` (values must be strings). 
+
+The two toggles (`CLAUDE_STATUSLINE_PLAIN`, `CLAUDE_STATUSLINE_NO_CACHE`) check presence, not value so `"1"` turns them on; remove the key to turn them off.
+
+Only include keys you want to change:
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 /absolute/path/to/claudecode-mini-statusbar/statusline.py"
+    "command": "PYTHONPATH=/absolute/path/to/claudecode-mini-statusbar python3 -m claude_statusline.statusline"
   },
   "env": {
     "CLAUDE_STATUSLINE_WIDTH": "12",
@@ -60,7 +66,7 @@ Set them with an `env` block in `~/.claude/settings.json` (values must be string
 }
 ```
 
-Restart Claude Code after editing. The two toggles (`CLAUDE_STATUSLINE_PLAIN`, `CLAUDE_STATUSLINE_NO_CACHE`) check presence, not value — `"1"` turns them on; remove the key to turn them off.
+Restart Claude Code after editing. 
 
 ## License
 
